@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevent scrollbars due to Three.js */
+  }
+  
+  .App {
+    position: relative;
+    color: white;
+  }
+  
