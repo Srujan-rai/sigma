@@ -1,15 +1,14 @@
-import React from 'react';
-import BackgroundAnimation from './components/BackgroundAnimation';
+import React from "react";
+import Navbar from "./components/Navbar";
+import BackgroundAnimation from "./components/BackgroundAnimation";
 
-function App() {
+const App = () => {
   return (
     <>
+      <Navbar />
       <BackgroundAnimation />
-      <h1 style={{ color: 'white', textAlign: 'center', marginTop: '50px' }}>
-        Sigma
-      </h1>
     </>
   );
-}
+};
 
 export default App;
