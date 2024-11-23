@@ -2,71 +2,54 @@ import React, { useState, useEffect } from "react";
 import "./DynamicLogo.css";
 
 const DynamicLogo = () => {
-  const abbreviation = "SIGMA";
+  const abbreviation = "S I G M A";
   const fullAbbreviation =
     "Sahyadri Intellectual Gallants Mascots of Artificial Intelligence";
 
-  const [displayText, setDisplayText] = useState(abbreviation); 
-  const [textIndex, setTextIndex] = useState(0); 
-  const [isErasing, setIsErasing] = useState(false); 
-  const [isTypingFullText, setIsTypingFullText] = useState(false); 
-
-  const typeFullText = () => {
-    if (textIndex < fullAbbreviation.length) {
-      setDisplayText((prev) => prev + fullAbbreviation[textIndex]);
-      setTextIndex((prev) => prev + 1);
-    } else {
-      setTimeout(() => {
-        setIsErasing(true);
-      }, 1000);
-    }
-  };
-
-  const eraseText = () => {
-    if (textIndex > 0) {
-      setDisplayText((prev) => prev.slice(0, -1)); 
-      setTextIndex((prev) => prev - 1);
-    } else {
-      setIsErasing(false);
-      setTextIndex(0);
-      setDisplayText("");
-      setIsTypingFullText(true); 
-    }
-  };
-
- 
-  useEffect(() => {
-    let interval;
-
-    if (isErasing) {
-      
-      interval = setInterval(eraseText, 100); 
-    } else if (isTypingFullText) {
-      interval = setInterval(typeFullText, 100); 
-    }
-
-    return () => clearInterval(interval);
-  }, [isErasing, textIndex, isTypingFullText]);
+  const [displayText, setDisplayText] = useState(""); // Current displayed text
+  const [isTypingFullText, setIsTypingFullText] = useState(false); // Toggle between abbreviation and fullAbbreviation
+  const [charIndex, setCharIndex] = useState(0); // Current character index
 
   useEffect(() => {
-    const cycleInterval = setInterval(() => {
-      if (!isErasing && !isTypingFullText) {
-        setDisplayText(""); 
-        setTextIndex(0); 
-        setIsErasing(true); 
-      } else if (isErasing && textIndex === 0) {
-        setIsErasing(false);
-        setIsTypingFullText(true);
-      }
-    }, 3000);
+    const currentText = isTypingFullText ? fullAbbreviation : abbreviation;
 
-    return () => clearInterval(cycleInterval);
-  }, [isErasing, isTypingFullText, textIndex]);
+    // Typing logic: Add characters one by one
+    if (charIndex <= currentText.length) {
+      const typingInterval = setInterval(() => {
+        setDisplayText(currentText.slice(0, charIndex + 1));
+        setCharIndex((prevIndex) => prevIndex + 1);
+      }, 50); // Faster typing speed
+
+      return () => clearInterval(typingInterval);
+    }
+
+    // Delay before switching modes
+    if (charIndex > currentText.length) {
+      const delayTimeout = setTimeout(() => {
+        setCharIndex(0);
+        setIsTypingFullText((prev) => !prev); // Switch to the other text
+      }, 1000); // Delay before switching
+
+      return () => clearTimeout(delayTimeout);
+    }
+  }, [charIndex, isTypingFullText, abbreviation, fullAbbreviation]);
+
+  // Highlight first letters dynamically
+  const highlightedText = displayText.split("").map((char, index) => {
+    if (("SIGMA".includes(char) && fullAbbreviation.indexOf(char) === index) || (("SIGMA".includes(char) && abbreviation.indexOf(char) === index))) {
+      return (
+        <span key={index} className="highlight">
+          {char}
+        </span>
+      );
+    }
+    return <span key={index}>{char}</span>;
+  });
 
   return (
     <div className="dynamic-logo-container">
       <div className="logo"></div>
-      <h1 className="main-text">{displayText}</h1>
+      <h1 className="main-text">{highlightedText}</h1>
     </div>
   );
 };

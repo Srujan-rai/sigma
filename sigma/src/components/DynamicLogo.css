@@ -1,39 +1,37 @@
 .dynamic-logo-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: transparent;
-  }
-  
-  /* Styling the logo */
-  .logo {
-    width: 100px;
-    height: 100px;
-    background: url('../assets/download.png') no-repeat center/contain;
-    margin-bottom: 20px;
-  }
-  
-  /* Text Styling */
-  .main-text {
-    font-family: 'Parkinsans', sans-serif;
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
-    text-align: center;
-    display: inline-block;
-    overflow: hidden;
-    border-right: 4px solid rgba(255, 255, 255, 0.75); 
-    padding-right: 5px;
-    white-space: nowrap;
-    animation: blinkCaret 0.75s step-end infinite;
-  }
-  
-  /* Blinking Cursor */
-  @keyframes blinkCaret {
-    50% {
-      border-color: transparent;
-    }
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: transparent;
+}
+
+/* Styling the logo */
+.logo {
+  width: 100px;
+  height: 100px;
+  background: url('../assets/download.png') no-repeat center/contain;
+  margin-bottom: 20px;
+}
+
+/* Text Styling */
+.main-text {
+  font-family: 'Parkinsans', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  display: inline; /* Prevent cursor height issues */
+  overflow: hidden;
+  white-space: normal; /* Allow wrapping */
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 90%;
+  padding-right: 5px; /* Add spacing for clean alignment */
+}
+
+.highlight {
+  color: red; /* Red color for the highlighted first letters */
+  font-weight: bold;
+}
