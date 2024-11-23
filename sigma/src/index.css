@@ -1,0 +1,16 @@
+/* General body styling to prevent content from hiding behind navbar */
+body {
+  margin-top: 60px; /* Adjust based on your navbar height */
+  font-family: Arial, sans-serif;
+}
+
+/* Additional styling for the pages */
+.home-page, .faculty-page, .achievements-page, .events-page {
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2em;
+  color: #333;
+}
