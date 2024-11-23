@@ -1,13 +1,13 @@
-/* Navbar container styles */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 100;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 10px 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .navbar-container {
@@ -18,20 +18,16 @@
   margin: 0 auto;
 }
 
-/* Logo */
 .navbar-logo {
-  font-family: 'Parkinsans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #fff;
   font-size: 30px;
   font-weight: bold;
   text-decoration: none;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
-  margin-left: 40px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Navigation links */
 .navbar-links {
-  font-family: 'Verdana', sans-serif;
   display: flex;
   gap: 20px;
   list-style: none;
@@ -42,29 +38,144 @@
 .navbar-links li a {
   color: #fff;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
   transition: color 0.3s ease;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow for readability */
 }
 
 .navbar-links li a:hover {
-  color: #41a8f8; /* Hover effect */
+  color: #41a8f8;
 }
 
-/* Responsive styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 18px;
+  width: 25px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
 @media (max-width: 768px) {
   .navbar-links {
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
     position: absolute;
     top: 60px;
     right: 20px;
-    padding: 10px;
+    padding: 15px;
     display: none;
-    border-radius: 5px;
+    border-radius: 8px;
   }
 
   .navbar-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo - Montserrat font */
+.navbar-logo {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Navigation links - Montserrat font */
+.navbar-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  color: #41a8f8; /* Hover effect color */
+}
+
+/* Hamburger Icon */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 18px;
+  width: 25px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  /* Mobile navigation links */
+  .navbar-links {
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 15px;
+    display: none;
+    border-radius: 8px;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .hamburger {
     display: flex;
   }
 }
